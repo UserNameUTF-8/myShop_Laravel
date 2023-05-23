@@ -1,0 +1,54 @@
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.landing_page {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    height: 70vh;
+    align-items: center;
+}
+
+.landing_page .textual_content {
+    width: 360px;
+    transform: translateY(-100px);
+}
+
+.landing_page .image_container {
+    max-width: 700px;
+}
+
+.landing_page .img {
+    max-width: 100%;
+    animation: mykeyframes 2s infinite;
+}
+
+@media screen and (max-width: 1149px) {
+    .landing_page .textual_content {
+        width: 100%;
+        text-align: center;
+        transform: translateY(0);
+    }
+
+    .landing_page .image_container {
+        width: 100%;
+    }
+}
+
+@keyframes mykeyframes {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.header {
+    text-align: center;
+    padding: 32px;
+}
