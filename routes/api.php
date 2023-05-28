@@ -1,7 +1,10 @@
 <?php
 
+namespace App\Http\Controllers\API;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +20,16 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+// Route::middleware(['auth'])->group(function () {
+//     Route::get('/products', [ApiSection::class, 'index']);
+// });
+
+Route::middleware(['token'])->group(function () {
+    Route::get('/products', [ApiSection::class, 'index']);
+    Route::post('/product/update/', [ApiSection::class, 'update']);
+});
+
+
+

@@ -13,7 +13,7 @@ use Gate;
 
 class ProductController extends Controller
 {
-
+    
 
 
     // create
@@ -34,7 +34,7 @@ class ProductController extends Controller
 
 
 
-    public function create(Request $req) {
+    public function create(Request $req) {      
 
 
 
@@ -80,7 +80,7 @@ class ProductController extends Controller
 
     //  end create 
 
-
+   
 
 
     // update
