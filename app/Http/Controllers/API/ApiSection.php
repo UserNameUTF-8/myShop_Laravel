@@ -7,6 +7,8 @@ namespace App\Http\Controllers\API;
 use DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Cache;
+
 
     // Thanks for Your attention With Love From Me Amine Essid <3
     // index, update products are tested by POST MAN app
@@ -26,14 +28,23 @@ class ApiSection extends Controller
         // filter request by user id if admin return all products else return products by user id
         $user_id = $req->request->get('user_id');
         
-
         $user = DB::select('SELECT * FROM users WHERE id = ?', [$user_id])[0];
         $products = [];
         
         if($user->role == 'Admin') {
-            $products = DB::select('SELECT * FROM products');
+            if(!Cache::has('admin_products')) {
+                $products = DB::select('SELECT * FROM products');
+                Cache::put('admin_products', $products);
+            }else {
+                $products = Cache::get('admin_products');
+            }
         }else {
-            $products = DB::select('SELECT * FROM products WHERE user_id = ?', [$user_id]);
+            if(!Cache::has('user_products'.$user_id)) {
+                $products = DB::select('SELECT * FROM products WHERE user_id = ?', [$user_id]);
+                Cache::put('user_products'.$user_id, $products);
+            }else {
+                $products = Cache::get('user_products'.$user_id);
+            }
         }
 
 
@@ -157,6 +168,12 @@ class ApiSection extends Controller
     }
 
 
+
+
+    function cats() {
+        $cats = DB::select('SELECT * FROM cats');
+        return $cats;
+    }
 
 
 

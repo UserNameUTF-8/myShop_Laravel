@@ -6,8 +6,8 @@
 
 
 <div class="card  card-hover">
-  <div class="img ratio ratio-1x1">
-      <img src="{{ Storage::url($item->prodImg) }}" class="card-img-top img-fluid" style="max-width:100%;" alt="img">
+  <div class="img ratio ratio-1x1 rounded">
+      <img src="{{ Storage::url($item->prodImg) }}" class="card-img-top img-fluid over-flow-hidden" style="max-width:100%;" alt="img">
   </div>
   <div class="card-body">
     <h5 class="card-title">{{$item->prodName}}</h5>

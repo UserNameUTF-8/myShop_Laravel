@@ -29,7 +29,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::middleware(['token'])->group(function () {
     Route::get('/products', [ApiSection::class, 'index']);
     Route::post('/product/update/', [ApiSection::class, 'update']);
+    Route::get("/cats", [ApiSection::class, "cats"]);
+
 });
+
+
 
 
 

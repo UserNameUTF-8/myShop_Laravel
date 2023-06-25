@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use DB;
 use Gate;
+use App\Events\LogInHistory;
 
 use Illuminate\Support\Facades\Hash;
 
@@ -90,6 +91,7 @@ class UserController extends Controller
             $products = DB::select('select * from products where user_id = ?', [Auth::user()->id]);
             return view('user.dashboread', ['products' => $products ]);
         }
+            
         }
 
 
@@ -105,7 +107,7 @@ class UserController extends Controller
 
 
         if(Auth::attempt(['mail' => $req->input('mail'), 'password' => $req->input('password')])) {
-
+            event(new LogInHistory(User::find(Auth::user()->id)));
             $req->session()->regenerate();
             return to_route('db');
 
